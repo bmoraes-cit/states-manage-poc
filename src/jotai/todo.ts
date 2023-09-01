@@ -12,8 +12,9 @@ export const tasksAtom = atom<TaskProps[]>([]);
 export const addTaskAtom = atom(
   (get) => get(tasksAtom),
   (get, set) => {
+    const name = get(taskNameAtom);
     const tasks = get(tasksAtom);
     set(taskNameAtom, "");
-    set(tasksAtom, [...tasks, { name: get(taskNameAtom), status: false }]);
+    set(tasksAtom, [...tasks, { name: name, status: false }]);
   }
 );

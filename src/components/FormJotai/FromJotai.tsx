@@ -10,7 +10,7 @@ export const FormJotai: React.FC = () => {
     setTaskName(e.target.value);
   };
   return (
-    <form>
+    <div>
       <h1 onClick={() => navigate("/")}>JOTAI</h1>
       <input
         value={taskName}
@@ -27,6 +27,6 @@ export const FormJotai: React.FC = () => {
           <li key={JSON.stringify(task)}>{task.name}</li>
         ))}
       </ul>
-    </form>
+    </div>
   );
 };

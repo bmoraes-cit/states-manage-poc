@@ -9,7 +9,7 @@ export const FormZustand: React.FC = () => {
   };
 
   return (
-    <form>
+    <div>
       <h1 onClick={() => navigate("/jotai")}>Zustand</h1>
       <input
         value={taskName}
@@ -27,6 +27,6 @@ export const FormZustand: React.FC = () => {
           <li key={JSON.stringify(task)}>{task.name}</li>
         ))}
       </ul>
-    </form>
+    </div>
   );
 };
