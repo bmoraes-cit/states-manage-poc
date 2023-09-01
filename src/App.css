@@ -1,0 +1,37 @@
+.container-main{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  height: 60vh;
+  
+}
+
+.container-main > form{
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.task-name-input{
+  border: 0.1rem solid #33333377;
+  padding: 2%;
+  border-radius: 0.6rem;
+}
+
+.btn-add{
+  border: none;
+  padding: 2%;
+  background: #232323;
+  color: #fff;
+  border-radius: 0.2rem;
+  cursor: pointer;  
+  transition: 1s;
+}
+
+.btn-add:hover{
+  transform: scale(1.05);
+  opacity: 0.7;
+}
