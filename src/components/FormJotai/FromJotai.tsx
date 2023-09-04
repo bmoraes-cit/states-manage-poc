@@ -1,30 +1,33 @@
-import React from "react";
+import React, { KeyboardEvent } from "react";
 import { useAtom } from "jotai";
-import { addTaskAtom, taskNameAtom } from "../../jotai/todo";
+import { Todo, manageTodosAtom } from "../../jotai/todo";
 import { useNavigate } from "react-router-dom";
 export const FormJotai: React.FC = () => {
-  const [taskName, setTaskName] = useAtom(taskNameAtom);
   const navigate = useNavigate();
-  const [tasks, addTask] = useAtom(addTaskAtom);
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTaskName(e.target.value);
+  const [todos, action] = useAtom(manageTodosAtom);
+
+  const remove = (todo: Todo) => action({ type: "remove", payload: todo });
+
+  const add = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== "Enter") return;
+    const title = e.currentTarget.value;
+    e.currentTarget.value = "";
+    action({ type: "add", payload: title });
   };
+
   return (
     <div>
       <h1 onClick={() => navigate("/")}>JOTAI</h1>
-      <input
-        value={taskName}
-        type="text"
-        className="task-name-input"
-        name="taskName"
-        onChange={handleInputChange}
-      />
-      <button type="submit" className="btn-add" onClick={addTask}>
-        +
-      </button>
+      <input type="text" placeholder="Add a new todo" onKeyDown={add} />
+
       <ul>
-        {tasks.map((task) => (
-          <li key={JSON.stringify(task)}>{task.name}</li>
+        {todos.map((task) => (
+          <li key={JSON.stringify(task)}>
+            <div>{task.title}</div>
+            <div>
+              <button onClick={() => remove(task)}>X</button>
+            </div>
+          </li>
         ))}
       </ul>
     </div>
